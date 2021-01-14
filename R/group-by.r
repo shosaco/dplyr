@@ -143,9 +143,7 @@ group_by_prepare <- function(.data, ..., .add = FALSE, .dots = deprecated(), add
 
   new_groups <- enquos(...)
   if (!missing(.dots)) {
-    # Used by dbplyr 1.4.2 so can't aggressively deprecate
-    lifecycle::deprecate_warn("1.0.0", "group_by(.dots = )")
-    new_groups <- c(new_groups, compat_lazy_dots(.dots, env = caller_env()))
+    lifecycle::deprecate_stop("1.0.0", "group_by(.dots = )")
   }
   new_groups <- new_groups[!map_lgl(new_groups, quo_is_missing)]
 
